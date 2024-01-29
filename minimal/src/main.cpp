@@ -104,8 +104,11 @@ public:
         std::filesystem::path frameworkShaderPath = app::GetDirectoryWithExecutable() / "shaders/framework" / app::GetShaderTypeName(GetDevice()->getGraphicsAPI());
         std::filesystem::path appShaderPath = app::GetDirectoryWithExecutable() / "shaders/minimal-sample" / app::GetShaderTypeName(GetDevice()->getGraphicsAPI());
 
+        // mount "RTXDI/media" to "/media" in VFS
         log::debug("Mounting %s to %s", mediaPath.string().c_str(), "/media");
+        // mount "RTXDI/build/bin/shaders/framework/dxil" to "/shaders/donut" in VFS
         log::debug("Mounting %s to %s", frameworkShaderPath.string().c_str(), "/shaders/donut");
+        // mount "RTXDI/build/bin/shaders/minimal-sample/dxil" to "/shaders/app" in VFS
         log::debug("Mounting %s to %s", appShaderPath.string().c_str(), "/shaders/app");
 
         m_RootFs = std::make_shared<vfs::RootFileSystem>();
